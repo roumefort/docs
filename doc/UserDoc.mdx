@@ -1,0 +1,71 @@
+# User Documentation
+
+## Description
+
+This document provides instructions for using the R-Type game. The game is a multiplayer game where you can either host a game or join a game.
+
+## Installation
+
+1. Clone the project repository from GitHub:
+   ```sh
+   git clone git@github.com:EpitechPromo2027/B-CPP-500-PAR-5-2-rtype-mikael.sourati.git
+2. Navigate to the project directory:
+    cd B-CPP-500-PAR-5-2-rtype-mikael.sourati
+3.  Ensure all necessary dependencies are installed. You may need to install additional libraries or tools depending on your system.
+4.  Compile the project using the `make.sh` script:
+    ```sh
+    ./make.sh
+Usage
+-----
+
+### Hosting a Game
+
+1.  Start the server by running `r-type_server` from the [bin](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) directory:
+    ```sh
+    ./bin/r-type_server
+Start the client by running `r-type_client` from the [bin](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) directory:
+```sh
+    ./bin/r-type_client
+```
+
+3. The client will automatically connect to the local server.
+
+### Joining a Game
+
+1.  Obtain the IP address of the server you want to connect to.
+2.  Start the client by running `r-type_client` from the [bin](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) directory:
+    ```sh
+    ./bin/r-type_client
+3.  Enter the server's IP address when prompted.
+
+Game Controls
+-------------
+
+-   **Movement**: Use the arrow keys to move your ship.
+-   **Shoot**: Press the spacebar to shoot.
+-   **Pause**: Press `P` to pause the game.
+
+Troubleshooting
+---------------
+
+### Connection Issues
+
+-   Ensure the server is running.
+-   Check that the firewall is not blocking the necessary ports.
+-   Make sure you are using the correct IP address to connect to the server.
+
+### Performance Issues
+
+-   Ensure your machine meets the minimum system requirements.
+-   Close other applications to free up resources.
+
+Credits
+-------
+
+This project was created by the following students:
+
+-   [Mikael Sourati](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+-   [Adrian Lalardie](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+-   [Hippolyte Lefer](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+-   [Quentin De-roumefort](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
+-   [Yann Pires](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html)
