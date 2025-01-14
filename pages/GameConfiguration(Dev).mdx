@@ -1,0 +1,201 @@
+# Documentation Configuration File for the Game
+
+## Description
+
+There is 2 type of configuration file for the game:
+
+  - the first one is a configuration file for the creation of the ECS, it contains the game configuration, like the game name, the module to load, the different entities, etc.
+
+  - the second one is a configuration file for the Game itself, it contains the game configuration, like where all the entities are, the assets to load with the entities, etc.
+
+
+We will consider the first one as ECS configuration file and the second one as Game configuration file.
+
+## ECS Configuration File
+
+The ECS configuration file is a custom file format used to define the setup of the Entity-Component-System (ECS) architecture for the game. This file specifies the game name, the modules to load, and the different entities along with their components.
+
+### Syntax
+
+The ECS configuration file uses a simple key-value pair syntax. The keys are case-sensitive and are followed by an equal sign `=`. The values can be strings, integers, or lists of strings or integers. Comments can be added using the `#` character.
+
+Strings are not enclosed in quotes, and lists are enclosed in square brackets `[]` with elements separated by commas, same as curly braces `{}`.
+
+```properties
+# This is a comment
+
+key = value
+
+string = this is a string
+
+integer = 42
+
+list = [
+    1,
+    2,
+    3
+]
+
+braces = {
+    KEY = VALUE
+}
+```
+
+
+### Structure
+
+The ECS configuration file consists of several sections:
+
+1. **NAME**: Specifies the name of the game.
+2. **MODULES**: Lists the modules to be loaded for both client and server.
+3. **MODULES_CLIENT**: Lists the modules to be loaded specifically for the client.
+4. **MODULES_SERVER**: Lists the modules to be loaded specifically for the server.
+5. **COMPONENTS_FILE**: (Optional) Specifies the file containing component definitions.
+6. **COMPONENTS**: (Optional) Lists the components used in the game.
+7. **ENTITY**: Defines the entities in the game and their associated components.
+
+### Example
+
+```properties
+NAME = test
+
+MODULES = [
+]
+
+MODULES_CLIENT = [
+    libmodulegraphique.so
+]
+
+MODULES_SERVER = [
+]
+
+COMPONENTS_FILE = [
+  ecs/include/Components.hpp
+]
+
+COMPONENTS = [
+    Position,
+    Asset,
+    Velocity,
+    Size,
+    Controllable,
+    Drawable,
+    Collision,
+    Health,
+    Damage,
+    Enemy,
+    Projectile,
+    Sound
+]
+
+ENTITY = [
+  ENEMY = {
+    COMPONENTS = [
+      Position,
+      Asset,
+      Velocity,
+      Size,
+      Drawable,
+      Collision,
+      Health,
+      Damage,
+      Enemy
+    ]
+  },
+  PLAYER = {
+    COMPONENTS = [
+      Position,
+      Asset,
+      Velocity,
+      Size,
+      Controllable,
+      Drawable,
+      Collision,
+      Health,
+      Damage
+    ]
+  },
+  SOUND = {
+    COMPONENTS = [
+      Sound,
+      Position,
+      Asset
+    ]
+  }
+]
+```
+
+## Game Configuration File
+
+The Game Configuration File is used to define the initial state of the game, including the placement of entities and their associated assets. This file specifies the positions and assets for each entity in the game.
+
+### Syntax
+
+The Game Configuration File uses a simple key-value pair syntax. The keys are case-sensitive and are followed by an equal sign `=`. The values can be strings, integers, or nested objects. Comments can be added using the `#` character.
+
+Strings are not enclosed in quotes, and nested objects are enclosed in curly braces `{}` with key-value pairs separated by commas.
+
+```gg
+# This is a comment
+
+ENTITY_NAME = {
+  COMPONENT_NAME = {
+    key = value,
+    key = value
+  },
+  COMPONENT_NAME = {
+    key = value
+  }
+}
+```
+
+example:
+
+```gg
+PLAYER = {
+  Position = {
+    x = 0,
+    y = 0
+  },
+  Asset = {
+    path = player.png
+  }
+}
+
+ENEMY = {
+  Position = {
+    x = 20,
+    y = 200
+  },
+  Asset = {
+    path = enemy.png
+  }
+}
+
+ENEMY = {
+  Position = {
+    x = 200,
+    y = 35
+  },
+  Asset = {
+    path = enemy.png
+  }
+}
+```
+
+In this example, the Game Configuration File defines the initial positions and assets for the PLAYER and ENEMY entities. Each entity has a Position component with x and y coordinates and an Asset component with a path to the asset file.
+
+The ENEMY entity is defined twice with different positions, allowing for multiple instances of the same entity with different configurations.
+
+Each entity will be loaded with the components specified in this file and the ECS configuration file.
+
+## Usage
+
+those file will be used by the game engine to load the game and the ECS, the game engine will read the ECS configuration file to create the ECS and the Game configuration file to load the entities and their components.
+
+this will be done with the `Factorie` class, the `Factorie` class will read the ECS configuration file and create the ECS, then it will read the Game configuration file and load the entities and their components.
+
+```cpp
+Factorie factorie;
+std::unique_ptr<Registry> registry = factorie.create_registry("game.conf", CLIENT);
+```

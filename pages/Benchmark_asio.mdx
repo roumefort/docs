@@ -1,0 +1,37 @@
+# Benchmark 1: ASIO vs Alternative (library without OS dependency)
+
+## Comparison Criteria:
+
+1. **OS Independence**
+   - **ASIO**: ASIO is fully independent of operating systems thanks to its modular design. It allows for cross-platform development without requiring platform-specific configurations.
+   - **Alternative (e.g., libevent)**: Libevent also works across multiple platforms without specific OS dependencies. However, it may require additional adjustments in configuration to optimize performance across different platforms (especially for Windows and Linux).
+
+2. **Ease of Integration**
+   - **ASIO**: The comprehensive documentation and provided examples make integration quick and easy. Additionally, with its widespread adoption in C++ projects, ASIO benefits from a large developer community.
+   - **Alternative (libevent)**: While integrating libevent is relatively straightforward, the documentation is not as extensive as ASIO’s, which can make it harder for less experienced developers to get started.
+
+3. **Performance**
+   - **ASIO**: ASIO is optimized for asynchronous I/O handling, offering excellent performance in applications requiring fast, low-latency network communication.
+   - **Alternative (libevent)**: Libevent is also performant, but in some cases, its event handling can lead to higher latencies compared to ASIO, especially under high loads.
+
+4. **Multithreading Support**
+   - **ASIO**: ASIO offers efficient multithreading management, making it suitable for high-performance network applications requiring simultaneous processing.
+   - **Alternative (libevent)**: Libevent also supports multithreading, but its synchronization mechanisms may sometimes be less refined than those of ASIO, requiring more effort for optimal implementation.
+
+---
+
+## ASIO vs libevent Benchmark Illustration (in terms of performance and OS independence)
+
+
+| **Criteria**             | **ASIO**     | **libevent** |
+|--------------------------|--------------|--------------|
+| **Independence of OS**   | Excellent    |  Moderate    |
+| **Multithreading**       | Excellent    |  Good        |
+| **Performance**          | Excellent    |  Good        |
+| **Documentation/Community**| Excellent    |  Moderate    |
+
+
+
+## Conclusion
+
+ASIO is an excellent choice for network applications requiring asynchronous management and OS independence, offering strong performance and great documentation.

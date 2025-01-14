@@ -12,7 +12,7 @@ This document provides instructions for using the R-Type game. The game is a mul
 2. Navigate to the project directory:
     cd B-CPP-500-PAR-5-2-rtype-mikael.sourati
 3.  Ensure all necessary dependencies are installed. You may need to install additional libraries or tools depending on your system.
-4.  Compile the project using the `make.sh` script:
+4.  Compile the project using the `make.sh` script (same usage for Linux and Windows):
     ```sh
     ./make.sh
 Usage
@@ -22,10 +22,10 @@ Usage
 
 1.  Start the server by running `r-type_server` from the [bin](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) directory:
     ```sh
-    ./bin/r-type_server
+    ./bin/r-type_server [--port [PORT]]
 Start the client by running `r-type_client` from the [bin](vscode-file://vscode-app/snap/code/177/usr/share/code/resources/app/out/vs/code/electron-sandbox/workbench/workbench.html) directory:
 ```sh
-    ./bin/r-type_client
+    ./bin/r-type_client [IP] [PORT] [config file]
 ```
 
 3. The client will automatically connect to the local server.

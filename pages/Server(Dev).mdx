@@ -1,0 +1,90 @@
+# UDP Server Documentation
+
+This documentation provides an overview of the UDP server and its communication with clients. It describes how data is exchanged between the server and client, and how the server processes client actions and updates ECS data accordingly.
+
+---
+
+## Overview
+
+The UDP server is responsible for handling communication with multiple clients. It allows clients to send actions, receive updates, and synchronize their data with the server in real-time. The server processes client requests, applies any necessary updates to the ECS (Entity-Component System), and sends back updated data or a rejection message if the action is not allowed.
+
+### Key Components:
+
+1. **Server:**
+   - Listens for UDP packets from clients.
+   - Processes client actions and updates ECS data.
+   - Sends updated data back to the client.
+   - Rejects actions that cannot be performed and sends a rejection response.
+
+2. **Client:**
+   - Sends actions (requests) to the server.
+   - Receives updated ECS data from the server.
+   - Updates local data based on the response from the server.
+   - Displays updated information to the user.
+
+---
+
+## Communication Flow
+
+### 1. Client sends an action
+
+When a client performs an action, such as a user interaction or a game move, it sends a UDP packet to the server containing the action data.
+
+### 2. Server processes the action
+
+The server receives the UDP packet, processes the action, and determines if the action is valid. It updates the ECS (Entity-Component System) data if the action is valid, or rejects the action if it is not.
+
+### 3. Server sends updated ECS data or rejection message
+
+After processing the action, the server sends back a response to the client. If the action was successful, the server sends updated ECS data. If the action was invalid, the server sends a rejection message.
+
+### 4. Client updates its local data
+
+Upon receiving the server's response, the client updates its local data with the ECS updates or reflects the rejection. The client then updates its user interface to display the most recent data.
+
+---
+
+## Data Exchange Diagram
+
+Below is a diagram illustrating the communication between the server and client:
+
+```plaintext
++-----------------+                           +-------------------+
+|   Client (UDP)  |                           |   Server (UDP)    |
++-----------------+                           +-------------------+
+         |                                               |
+         | --- Send Action Packet (Protocol) ----------> |
+         |                                               |
+         |                                               |
+         | <--- Receive Updated ECS Data/Reject Packet --|
+         |                                               |
+         | - Update Local Data (ECS)                     |
+         |                                               |
+         | - Display Updated Information                 |
+         |                                               |
++-----------------+                           +-------------------+
+```
+
+## Server Protocol
+
+The client communicate with the server through number (4-8), witch the server interpret in the following way:
+
+### 4 :  is the number interpreted as the "end" command for the server.
+    This command takes no argument and will make the client disconnect from the server (quit the game)
+
+### 5 :  is the number interpreted as the "quit" command for the server.
+    This command takes no argument and will make the client quit the leveland go back to the lobi
+
+### 6 :  is the number interpreted as the "lvlSelect" command for the server.
+    This command takes one argument (number of the level)
+    and will tell the server witch level the client want to select
+
+### 7 :  is the number interpreted as the "move" command for the server.
+    This command takes two arguments and will tell the player that the connected player want to move a certain way
+    the arguments this command takes are: vertical movement, horizontal movement (1 for up or right, 2 for down or left) in the following way:
+    7 1 1 -> the player want to move up and right
+    7 2 2 -> the player want to move down and left
+    7 1 2 -> the player want to move up and left
+
+### 8 :  is the number interpreted as the "shoot" command for the server.
+    This command takes no argument and will tell the server that the connected player want to shoot.

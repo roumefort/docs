@@ -15,9 +15,17 @@
     {
       "group": "Documentation",
       "pages": [
-        "introduction",
-        "pages/DevDoc",
-        "pages/UserDoc"
+        "README",
+        "pages/User",
+        "pages/Developer",
+        "pages/ECS(Dev)",
+        "pages/Server(Dev)",
+        "pages/GameConfiguration(Dev)",
+        "pages/CI_CD(Dev)",
+        "pages/Benchmark_ECS",
+        "pages/Benchmark_asio",
+        "pages/Benchmark_sfml",
+        "pages/Contribution"
       ]
     }
   ]

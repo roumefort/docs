@@ -1,0 +1,28 @@
+Why use an ECS in an R-Type project?
+
+1.  **Performance and Scalability**\
+    **Separation of Data and Behavior:**\
+    With ECS, entities only contain identifiers. All data is stored in components, and behaviors are in systems. This maximizes cache usage, as similar components are stored together in contiguous memory structures.
+
+    For example, all projectiles can share a Position or Velocity component, which is processed efficiently in a loop.\
+    **Natural Parallelism:**\
+    Systems can run independently of each other, making parallelization easier. In an R-Type game with many enemies and projectiles on screen, this optimization is crucial.
+
+2.  **Modularity and Reusability**\
+    **Adding Features Without Modifying Existing Code:**\
+    If you want to add a "shield" effect for certain enemies, you can simply create a ShieldComponent and a system to interpret it. There's no need to modify other systems or entities.
+
+    **Reusing Components:**\
+    The same components, such as Position, Velocity, or Sprite, can be used for different types of entities (enemies, projectiles, players).
+
+3.  **Flexibility for Creating Dynamic Entities**\
+    Entities in an ECS are defined by their composition. For example:
+
+    A player might be defined as:\
+    `[Position, Velocity, Health, Sprite]`
+
+    An enemy might be defined as:\
+    `[Position, Velocity, Health, Sprite]`
+
+    A projectile might be defined as:\
+    `[Position, Velocity, Damage]`
